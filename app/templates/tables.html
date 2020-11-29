@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Script</th>
+                      <th>Country</th>
+                      <th>Buy Price</th>
+                      <th>Buy Time</th>
+                      <th>Currency</th>
+                      <th>Units</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Script</th>
+                      <th>Country</th>
+                      <th>Buy Price</th>
+                      <th>Buy Time</th>
+                      <th>Currency</th>
+                      <th>Units</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    {% for data in stocksdata %} 
+                    <tr>
+                      <td>{{data.security_name}}</td>
+                      <td>{{data.country}}</td>
+                      <td>{{data.buy_price}}</td>
+                      <td>{{data.buy_time}}</td>
+                      <td>{{data.currency}}</td>
+                      <td>{{data.units}}</td>
+                      <td><a href="#" class="btn btn-info btn-circle"><i class="fa fa-pen-square" aria-hidden="true"></i></a>&nbsp;<a href="{{data.id}}/delete" class="btn btn-danger btn-circle"><i class="fas fa-trash" aria-hidden="true"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      <!-- End of Main Content -->
+      
+            
+      {% endblock %}
+
+      

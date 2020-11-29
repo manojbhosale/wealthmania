@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-group">
+    <form action="{{url_for('uploader')}}" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        {{form.uploadedFile}}
+        <div class="form-group">{{ form.submit() }}</div>
+    </form>
+</div>
+
+{% endblock %}

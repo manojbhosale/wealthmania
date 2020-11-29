@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-group">
+    <form action="" method="POST" novalidate>
+        
+        {{form.hidden_tag()}}
+        {{form.stockName.label}}
+        {{form.stockName}}
+        {{form.buyPrice.label}}
+        {{form.buyPrice}}
+        {{form.quantity.label}}
+        {{form.quantity}}
+        
+        <div class="form-group">{{ form.add() }}</div>
+    </form>
+</div>
+
+{% endblock %}
