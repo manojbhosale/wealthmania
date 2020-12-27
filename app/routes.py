@@ -13,8 +13,19 @@ import os
 @wealthApp.route('/index')
 @login_required
 def index():
-	user = {"username":"Manoj","networth":"1000 INR","networth_change":"100 INR"}
+	user = current_user
+	user_obj = User.query.filter_by(username=user.username).first()
+	print(user_obj.username)
+	networth = get_networth()
+	user = {"username":"Manoj","networth":str(networth)+" INR","networth_change":"100 INR"}
 	return render_template('index.html', title='Home', user=user)
+
+def get_networth():
+	securities = Security.query.filter_by(user_id=current_user.id)
+	total_worth = 0
+	for sec in securities:
+		total_worth = total_worth + (sec.buy_price * sec.units)
+	return total_worth
 
 @login_required
 @wealthApp.route('/upload')
@@ -96,7 +107,7 @@ def login():
 @wealthApp.route('/addstock',methods=['GET','POST'])
 def addstock():
 	form = AddNewStock()
-	print("OusSide validate form!")
+	print("OutSide validate form!")
 	if form.validate_on_submit():
 		print("Inside validate form!")
 		#Security.query.filter_by(user_id=current_user.id)
